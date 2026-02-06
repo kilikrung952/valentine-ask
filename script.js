@@ -6,6 +6,7 @@ const yesBtn = document.querySelector(".btn[alt='Yes']");
 
 const title = document.getElementById("letter-title");
 const catImg = document.getElementById("letter-cat");
+const chopperImg = document.getElementById("letter-chopper");
 const buttons = document.getElementById("letter-buttons");
 const finalText = document.getElementById("final-text");
 
@@ -60,9 +61,36 @@ noBtn.addEventListener("mouseover", () => {
 // YES is clicked
 
 yesBtn.addEventListener("click", () => {
-    title.textContent = "Yippeeee!";
+    title.textContent = "HUZZZZAAHHHHHHHH!";
 
     catImg.src = "cat_dance.gif";
+
+    // Create a flex container for both images if it doesn't exist
+    let imagesContainer = document.getElementById("images-container");
+    if (!imagesContainer) {
+        imagesContainer = document.createElement("div");
+        imagesContainer.id = "images-container";
+        imagesContainer.style.display = "flex";
+        imagesContainer.style.justifyContent = "center";
+        imagesContainer.style.alignItems = "center";
+        imagesContainer.style.gap = "12px";
+        catImg.parentElement.insertBefore(imagesContainer, catImg);
+        imagesContainer.appendChild(catImg);
+    }
+
+    // Add (or update) a chopper GIF next to the cat GIF
+    let chopper = document.getElementById("letter-chopper");
+    if (!chopper) {
+        chopper = document.createElement("img");
+        chopper.id = "letter-chopper";
+        chopper.alt = "Chopper";
+        chopper.src = "chopper_dance.gif";
+        chopper.style.width = "250px";
+        chopper.style.height = "auto";
+        imagesContainer.appendChild(chopper);
+    } else {
+        chopper.src = "chopper_dance.gif";
+    }
 
     document.querySelector(".letter-window").classList.add("final");
 
