@@ -9,12 +9,17 @@ const catImg = document.getElementById("letter-cat");
 const chopperImg = document.getElementById("letter-chopper");
 const buttons = document.getElementById("letter-buttons");
 const finalText = document.getElementById("final-text");
+const bgMusic = document.getElementById("background-music");
+const jeopardyMusic = document.getElementById("jeopardy-music");
 
 // Click Envelope
 
 envelope.addEventListener("click", () => {
     envelope.style.display = "none";
     letter.style.display = "flex";
+
+    // Play jeopardy music on loop
+    jeopardyMusic.play();
 
     setTimeout( () => {
         document.querySelector(".letter-window").classList.add("open");
@@ -62,8 +67,13 @@ noBtn.addEventListener("mouseover", () => {
 
 yesBtn.addEventListener("click", () => {
     title.textContent = "HUZZZZAAHHHHHHHH!";
-
+//Stop jeopardy and play victory music
+    jeopardyMusic.pause();
+    jeopardyMusic.currentTime = 0;
     catImg.src = "cat_dance.gif";
+
+    // Play background music on loop
+    bgMusic.play();
 
     // Create a flex container for both images if it doesn't exist
     let imagesContainer = document.getElementById("images-container");
